@@ -10,8 +10,16 @@ const nonLexicalWords = ["to", "got", "is", "have", "and", "although", "or", "th
 // BASIC FUNCTION: Returns lexical density for entire input
 function lexicalFilter(input) { 
   var inputWordsArray = input.split(' ');
+  var originalLength = inputWordsArray.length;
 
-  return inputWordsArray;
+  for (var i = 0; i < inputWordsArray.length; i++) {
+    if (nonLexicalWords.includes(inputWordsArray[i].toLowerCase())) {
+      inputWordsArray.splice(i, 1)
+      i--
+    }
+  }
+  var finalLength = inputWordsArray.length;
+  return (finalLength/originalLength).toFixed(2); // returning the lexical density to 2 decimal places
 }
 
 
