@@ -22,12 +22,21 @@ function lexicalFilter(input) {
   return (finalLength/originalLength).toFixed(2); // returning the lexical density to 2 decimal places
 }
 
+// VERBOSE FUNCTION: Returns lexical density for each sentence
+function lexicalFilterVerbose(input) {
+  var inputSentenceArray = input.split('.');
+  inputSentenceArray.pop(); // remove blank entry after last period in sentence array
+  var sentence_ld = [];
+
+  return sentence_ld;
+}
+
 
 // ROUTE
 app.get('/complexity', function(req, res) {
   var input = req.query.input;
   
-  res.send(lexicalFilter(input));
+  res.json({ "data": { overall_ld: Number(lexicalFilter(input)) } });
 });
 
 app.listen(port);
