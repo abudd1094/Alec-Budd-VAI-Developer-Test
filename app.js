@@ -54,8 +54,18 @@ function lexicalFilterVerbose(input) {
 // ROUTE
 app.get('/complexity', function(req, res) {
   var input = req.query.input;
-  
-  res.json({ "data": { overall_ld: Number(lexicalFilter(input)) } });
+
+  if (!input) {
+    res.send(400, { "message": "No input provided" }) // handling error cases
+  } else if (input.length >= 1000) {
+    res.send(400, { "message": "Input invalid, exceeds 1000 characters" })
+  } else if (input.split(' ').length >= 100) {
+    res.send(400, { "message": "Input invalid, exceeds 100 words" })
+  } else if (req.query.mode == "verbose") {
+    res.json({ "data": { sentence_ld: lexicalFilterVerbose(input), overall_ld: Number(lexicalFilter(input)) } });
+  } else {
+    res.json({ "data": { overall_ld: Number(lexicalFilter(input)) } });
+  }  
 });
 
 app.listen(port);
