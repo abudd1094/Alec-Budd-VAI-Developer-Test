@@ -1,13 +1,25 @@
 // GLOBAL VARIABLES
 const request = require('supertest');
-var express = require('express'); 
-var app = express();
+const express = require('express'); 
+const app = express();
+const mongoose = require('mongoose'); 
 
-var port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 const nonLexicalWords = ["to", "got", "is", "have", "and", "although", "or", "that", "when", "while", "a", "either", "more", "much", "neither", "my", "that", "the", "as", "no", "nor", "not", "at", "between", "in", "of", "without", "I", "you", "he", "she", "it", "we", "they", "anybody", "one"];
 
 
+// Connect Mongoose
+mongoose
+  .connect('mongodb://localhost/vai-challenge', {useNewUrlParser: true})
+  .then(x => {
+    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+  })
+  .catch(err => {
+    console.error('Error connecting to mongo', err)
+  });
+
+  
 // BASIC FUNCTION: Returns lexical density for entire input up to two decimal places
 function lexicalFilter(input) { 
   var inputWordsArray = input.split(' ');
@@ -58,11 +70,11 @@ app.get('/complexity', function(req, res) {
   var input = req.query.input;
 
   if (!input) {
-    res.send(400, { "message": "No input provided" }) // handling error cases
+    res.send(400, { "message": "Invalid input" }) // handling error cases
   } else if (input.length >= 1000) {
-    res.send(400, { "message": "Input invalid, exceeds 1000 characters" })
+    res.send(400, { "message": "Invalid input, exceeds 1000 characters" })
   } else if (input.split(' ').length >= 100) {
-    res.send(400, { "message": "Input invalid, exceeds 100 words" })
+    res.send(400, { "message": "Invalid input, exceeds 100 words" })
   } else if (req.query.mode == "verbose") {
     res.json({ "data": { sentence_ld: lexicalFilterVerbose(input), overall_ld: Number(lexicalFilter(input)) } });
   } else {

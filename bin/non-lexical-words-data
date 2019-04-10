@@ -1,0 +1,112 @@
+const words = [
+  {
+    word: "to"
+  }, 
+  {
+    word: "got"
+  }, 
+  {
+    word: "is"
+  }, 
+  {
+    word: "have"
+  }, 
+  {
+    word: "and"
+  }, 
+  {
+    word: "although"
+  }, 
+  {
+    word: "or"
+  }, 
+  {
+    word: "that"
+  }, 
+  {
+    word: "when"
+  }, 
+  {
+    word: "while"
+  }, 
+  {
+    word: "a"
+  }, 
+  {
+    word: "either"
+  }, 
+  {
+    word: "more"
+  }, 
+  {
+    word: "much"
+  }, 
+  {
+    word: "neither"
+  }, 
+  {
+    word: "my"
+  }, 
+  {
+    word: "that"
+  }, 
+  {
+    word: "the"
+  },
+  {
+    word:  "as"
+  }, 
+  {
+    word: "no"
+  }, 
+  {
+    word: "nor"
+  }, 
+  {
+    word: "not"
+  }, 
+  {
+    word: "at"
+  }, 
+  {
+    word: "between"
+  }, 
+  {
+    word: "in"
+  }, 
+  {
+    word: "of"
+  }, 
+  {
+    word: "without"
+  }, 
+  {
+    word: "I"
+  }, 
+  {
+    word: "you"
+  }, 
+  {
+    word: "he"
+  }, 
+  {
+    word: "she"
+  }, 
+  {
+    word: "it"
+  }, 
+  {
+    word: "we"
+  }, 
+  {
+    word: "they"
+  }, 
+  {
+    word: "anybody"
+  }, 
+  {
+    word: "one"
+  }
+];
+
+module.exports = words;
