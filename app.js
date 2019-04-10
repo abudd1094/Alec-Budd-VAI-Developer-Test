@@ -27,6 +27,25 @@ function lexicalFilterVerbose(input) {
   var inputSentenceArray = input.split('.');
   inputSentenceArray.pop(); // remove blank entry after last period in sentence array
   var sentence_ld = [];
+  
+  for (var j = 0; j < inputSentenceArray.length; j++) {    
+    var inputWordsArray = inputSentenceArray[j].split(' ');
+
+    if (inputWordsArray[0] === '') { // accounting for empty first entries 
+      inputWordsArray.shift();
+    }
+
+    var originalLength = inputWordsArray.length;
+
+    for (var i = 0; i < inputWordsArray.length; i++) {
+      if (nonLexicalWords.includes(inputWordsArray[i].toLowerCase())) {
+        inputWordsArray.splice(i, 1)
+        i--
+      }
+    }
+    var finalLength = inputWordsArray.length;
+    sentence_ld.push((finalLength/originalLength).toFixed(2));
+  }
 
   return sentence_ld;
 }
